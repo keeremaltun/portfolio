@@ -1,45 +1,96 @@
+/* Genel Stil Resetleme ve Temel Ayarlar */
 body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background: #f9f9f9;
-  margin: 0;
-  padding: 0;
-  color: #333;
+    margin: 0;
+    font-family: 'Arial', sans-serif; /* Daha yaygın ve okunaklı bir font */
+    line-height: 1.6;
+    color: #333; /* Koyu gri metin */
+    background-color: #f0f0f0; /* Açık gri arka plan */
+    padding: 20px; /* Sayfanın kenarlarından biraz boşluk */
 }
 
+/* Başlık (Header) Stilleri */
 header {
-  background-color: #343a40;
-  color: white;
-  padding: 20px;
-  text-align: center;
+    background-color: #4CAF50; /* Yeşil bir başlık rengi */
+    color: white;
+    padding: 40px 20px; /* Daha fazla dikey boşluk */
+    text-align: center;
+    margin-bottom: 30px; /* Altına boşluk bırak */
 }
 
+header h1 {
+    font-size: 2.5em; /* Başlık boyutu */
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.1em;
+}
+
+/* Bölümlerin Genel Stilleri (About Me, My Projects) */
 section {
-  padding: 20px;
-  max-width: 800px;
-  margin: auto;
+    background-color: #ffffff; /* Beyaz arka plan */
+    padding: 30px;
+    margin-bottom: 30px; /* Altına boşluk bırak */
+    border: 1px solid #ddd; /* Hafif bir çerçeve */
+    border-radius: 5px; /* Köşeleri yuvarla */
 }
 
-.projects ul {
-  list-style-type: none;
-  padding: 0;
+section h2 {
+    color: #333; /* Başlık rengi */
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee; /* Altına ince çizgi */
 }
 
-.projects li {
-  margin-bottom: 10px;
+/* Projeler Listesi Stilleri */
+section.projects ul {
+    list-style: disc; /* Varsayılan madde işaretlerini kullan */
+    margin-left: 20px; /* Sol boşluk */
 }
 
-a {
-  color: #0077cc;
-  text-decoration: none;
+section.projects ul li {
+    margin-bottom: 10px;
 }
 
-a:hover {
-  text-decoration: underline;
+section.projects ul li a {
+    text-decoration: none; /* Alt çizgiyi kaldır */
+    color: #007bff; /* Mavi link rengi (genel link rengi) */
+    font-weight: bold;
 }
 
+section.projects ul li a:hover {
+    text-decoration: underline; /* Üzerine gelince alt çizgi çıksın */
+}
+
+/* Alt Bilgi (Footer) Stilleri */
 footer {
-  text-align: center;
-  padding: 10px;
-  background-color: #eee;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px; /* Üstüne boşluk bırak */
+    color: #555; /* Koyu gri metin */
+    border-top: 1px solid #ddd; /* Üstte ince bir çizgi */
+}
+
+footer a {
+    color: #007bff; /* Mavi link rengi */
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Tasarım İçin Basit Ayarlar */
+/* Küçük ekranlarda padding'i ayarla */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    header {
+        padding: 30px 15px;
+    }
+    section {
+        padding: 20px;
+    }
 }
