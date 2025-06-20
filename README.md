@@ -9,7 +9,9 @@ Hello! This repository contains my personal portfolio website and some of the pr
 
 * **Personal Web Portfolio (HTML/CSS):** This is the very website you're viewing! It was designed and coded by me from scratch using HTML and CSS. Its purpose is to showcase my web development skills and completed projects, hosted on GitHub Pages.
     * [View Website Code](https://github.com/keeremaltun/portfolio)
-    * [Visit Live Website](https://keeremaltun.github.io/portfolio/) ## About Me
+    * [Visit Live Website](https://keeremaltun.github.io/portfolio/)
+    *
+## About Me
 
 As a first-year Software Engineering student, I have a keen interest in data visualization, web development, and open-source projects. I aim to specialize in machine learning and artificial intelligence in the future.
 
