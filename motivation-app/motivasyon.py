@@ -1,60 +1,59 @@
-import datetime
 import random
-import json
-import os
+from rich.console import Console
+from rich.panel import Panel
 
-# Sabit söz listesi (istersen bunu dışarıdan JSON olarak da alabiliriz)
-default_quotes = [
-    "Success is not final, failure is not fatal: it is the courage to continue that counts.",
-    "Don't watch the clock; do what it does. Keep going.",
-    "You are capable of amazing things.",
-    "Believe you can and you're halfway there.",
-    "Push yourself, because no one else is going to do it for you.",
-    "Do something today that your future self will thank you for."
-]
-
-QUOTE_FILE = "quotes.json"
+QUOTES_FILE = "quotes.txt"
+console = Console()
 
 def load_quotes():
-    if os.path.exists(QUOTE_FILE):
-        with open(QUOTE_FILE, "r") as file:
-            return json.load(file)
-    else:
-        return default_quotes
+    with open(QUOTES_FILE, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+    return [line.strip().strip('",') for line in lines if line.strip()]
 
 def save_quotes(quotes):
-    with open(QUOTE_FILE, "w") as file:
-        json.dump(quotes, file, indent=4)
+    with open(QUOTES_FILE, "w", encoding="utf-8") as f:
+        for quote in quotes:
+            f.write(f'"{quote}",\n')
 
-def get_quote_of_the_day(quotes):
-    day_number = datetime.datetime.now().timetuple().tm_yday
-    index = day_number % len(quotes)
-    return quotes[index]
-
-def add_custom_quote(quotes):
-    new_quote = input("Enter your motivational quote: ").strip()
-    if new_quote:
-        quotes.append(new_quote)
-        save_quotes(quotes)
-        print("Quote added successfully!")
-
-def main():
+def show_random_quote():
     quotes = load_quotes()
-    print("\n🌟 Today's Motivational Quote 🌟")
-    print("----------------------------------")
-    print(get_quote_of_the_day(quotes))
-    
+    if quotes:
+        quote = random.choice(quotes)
+        console.print(Panel(quote, title="Random Quote", style="bold magenta"))
+    else:
+        console.print("[red]Quote list is empty.[/red]")
+
+def add_quote(new_quote):
+    quotes = load_quotes()
+    quotes.append(new_quote)
+    save_quotes(quotes)
+    console.print("[green]Quote added.[/green]")
+
+def remove_quote(quote_to_remove):
+    quotes = load_quotes()
+    if quote_to_remove in quotes:
+        quotes.remove(quote_to_remove)
+        save_quotes(quotes)
+        console.print("[yellow]Quote removed.[/yellow]")
+    else:
+        console.print("[red]Quote not found.[/red]")
+
+def main_loop():
     while True:
-        choice = input("\nWant another random quote? (y/n) or (a)dd your own: ").lower()
-        if choice == "y":
-            print("\n💬", random.choice(quotes))
-        elif choice == "a":
-            add_custom_quote(quotes)
-        elif choice == "n":
-            print("Stay motivated! 💪")
+        console.print("\n[bold cyan]1:[/bold cyan] Show random quote\n[bold cyan]2:[/bold cyan] Add quote\n[bold cyan]3:[/bold cyan] Remove quote\nType '[bold]exit[/bold]' to quit.")
+        choice = input("Select: ").strip()
+        if choice == "1":
+            show_random_quote()
+        elif choice == "2":
+            new_q = input("Enter new quote: ").strip()
+            add_quote(new_q)
+        elif choice == "3":
+            rem_q = input("Enter quote to remove: ").strip()
+            remove_quote(rem_q)
+        elif choice.lower() == "exit":
+            console.print("[bold green]Exiting...[/bold green]")
             break
         else:
-            print("Please enter y, n or a.")
+            console.print("[red]Invalid choice.[/red]")
 
-if __name__ == "__main__":
-    main()
+main_loop()
