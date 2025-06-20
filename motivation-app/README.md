@@ -4,10 +4,9 @@ This Python command-line application displays a motivational quote of the day an
 
 ## 🚀 Features
 
-- Daily motivational quote
+- Random motivational quote
 - View random quotes
 - Add custom user quotes
-- All quotes are stored in `quotes.json`
 
 ## 🛠️ Requirements
 
